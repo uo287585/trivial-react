@@ -1,23 +1,33 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import QuestionComponent from './Components/QuestionComponent';
+import PlayerInfoComponent from './Components/PlayerInfoComponent';
 
-function App() {
+let App=()=> {
+  let [points,setPoints]=useState(0)
+  let [questions,setQuestions]=useState([
+    {
+      text: '¿Cual es la capital de España?',
+      options: ['Madrid','Paris','Berlin'],
+      answer: 0
+    }
+    ,
+    {
+      text: '¿Cual es la capital de Alemania?',
+      options: ['Madrid','Paris','Berlin'],
+      answer: 2
+    },
+    {
+      text: '¿Cuanto es 1+1?',
+      options: ['1','2','3'],
+      answer: 1
+    }
+  ])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PlayerInfoComponent points={points}/>
+      <QuestionComponent questions={questions} points={points}setPoints={setPoints}/>
     </div>
   );
 }
