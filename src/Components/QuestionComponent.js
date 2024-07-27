@@ -4,6 +4,7 @@ let QuestionComponent = (props) => {
     let {questions,setPoints,points} = props
     let [numberOfQuestion,setNumberOfQuestion] = useState(0)
     let [message,setMessage]=useState(null)
+    let [myAnswer,setMyAnswer]=useState("")
 
     let answerQuestion = (answer) => {
         if (answer == questions[numberOfQuestion].answer){
@@ -11,7 +12,10 @@ let QuestionComponent = (props) => {
             setPoints(points+1)
             //msg
         }else{
-            setMessage("Wrong answer")
+            if(questions[numberOfQuestion].options.length>0)
+                setMessage("Wrong answer.Correct answer: "+questions[numberOfQuestion].options[questions[numberOfQuestion].answer])
+            else
+                setMessage("Wrong answer.Correct answer: "+questions[numberOfQuestion].answer)
         }
 
         if(numberOfQuestion<questions.length-1){
@@ -37,11 +41,21 @@ let QuestionComponent = (props) => {
                 <h2>{message}</h2>}
             <h2>Question</h2>
             <p id="questionText"> {questions[numberOfQuestion].text}</p>
+
+            {questions[numberOfQuestion].options.length>0 && 
             <ul className="options">
                 {questions[numberOfQuestion].options.map((option,i)=>
-                  <li><button onClick={()=>{answerQuestion(i)}}>{option}</button></li>  
+                  <li key ={option}><button onClick={()=>{answerQuestion(i)}}>{option}</button></li>  
                 )}
             </ul>
+            }
+
+            {questions[numberOfQuestion].options.length==0 &&
+            <div>             
+                <input type='text' placeholder='Your answer' onChange={(e)=>{setMyAnswer(e.currentTarget.value)}}/>
+                <button onClick={()=>{answerQuestion(myAnswer)}}>Send</button>
+            </div>
+            }
         </div>
     )
 }

@@ -5,24 +5,29 @@ import PlayerInfoComponent from './Components/PlayerInfoComponent';
 
 let App=()=> {
   let [points,setPoints]=useState(0)
-  let [questions,setQuestions]=useState([
+  let [questions, setQuestions] = useState([
     {
-      text: '¿Cual es la capital de España?',
-      options: ['Madrid','Paris','Berlin'],
+      text: "¿Cual es la capital de España",
+      options: ["Madrid","Paris","Berlin"],
       answer: 0
-    }
-    ,
+    },
     {
-      text: '¿Cual es la capital de Alemania?',
-      options: ['Madrid','Paris','Berlin'],
+      text: "¿Cual es la capital de Alemania",
+      options: ["Madrid","Paris","Berlin","Tokio"],
       answer: 2
     },
     {
-      text: '¿Cuanto es 1+1?',
-      options: ['1','2','3'],
-      answer: 1
+      text: "¿Cuanto es 10+10?",
+      options: [],
+      answer: 20
+    },
+    {
+      text: "¿Cual es la capital de Alemania",
+      options: [],
+      answer: "Berlin"
     }
   ])
+
 
   return (
     <div className="App">
